@@ -1,0 +1,78 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="WEB-INF/templates/Layout.xhtml">
+
+	<ui:define name="content">
+		<f:metadata>
+			<f:event listener="#{moradorBean.listarUnidades}"
+				type="preRenderView" />
+		</f:metadata>
+
+		<div class="ui-fluid">
+			<h1 class="aw-page-title">Cadastro Morador</h1>
+
+
+			<h:form id="form">
+
+				<p:messages autoUpdate="false" />
+
+				<h:inputHidden value="#{moradorBean.morador.id}" />
+				<h:inputHidden value="#{moradorBean.morador.email}" />
+
+				<p:panelGrid id="panel" columns="4" layout="grid"
+					style="margin-bottom: 15px" styleClass="panelgrid-noborder"
+					columnClasses="ui-grid-col-2, ui-grid-col-4,ui-grid-col-2,ui-grid-col-4">
+
+					<p:outputLabel value="Nome Completo: " for="nomeCompleto" />
+					<p:inputText id="nomeCompleto" label="NomeCompleto"
+						value="#{moradorBean.morador.nomeCompleto}" />
+
+					<p:outputLabel value="Apartamento: " for="unidade" />
+					<p:selectOneMenu id="unidade">
+						<f:selectItem itemLabel="Selecione a unidade" />
+						<f:selectItems value="#{moradorBean.listaUnidades}" var="unidade"
+							itemValue="#{unidade}" itemLabel="#{unidade.unidade}" />
+					</p:selectOneMenu>
+
+					<p:outputLabel value="E-mail: " for="email" />
+					<p:inputText id="email" label="Email"
+						value="#{moradorBean.morador.email}" required="true"
+						requiredMessage="Por favor, informe seu email" />
+
+					<p:outputLabel value="Telefone: " for="telefone" />
+					<p:inputText id="telefone" label="Telefone"
+						value="#{moradorBean.morador.telefone}" />
+
+					<p:outputLabel value="Celular: " for="celular" />
+					<p:inputText id="celular" label="Celular"
+						value="#{moradorBean.morador.celular}" />
+
+					<p:outputLabel value="Data Aniversário: " for="aniversario" />
+					<p:calendar id="aniversario" label="Data de aniversário"
+						value="#{moradorBean.morador.dataNascimento}" pattern="dd/MM/yyyy"
+						locale="pt" />
+
+					<p:outputLabel value="Observações: " for="observacoes" />
+					<p:inputText id="observacoes" label="Observações"
+						value="#{moradorBean.morador.obsMorador}" />
+
+				</p:panelGrid>
+
+				<p:toolbar>
+					<p:toolbarGroup>
+						<p:commandButton value="Salvar" action="#{moradorBean.salvar}"
+							update="@form" process="@this panel" />
+
+					</p:toolbarGroup>
+				</p:toolbar>
+
+			</h:form>
+
+		</div>
+
+	</ui:define>
+
+</ui:composition>

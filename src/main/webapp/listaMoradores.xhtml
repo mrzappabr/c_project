@@ -1,0 +1,53 @@
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="WEB-INF/templates/Layout.xhtml">
+
+	<ui:define name="content">
+		<div class="ui-fluid">
+			<h1 class="aw-page-title">Lista Moradores</h1>
+
+			<h:form id="form">
+
+				<p:messages autoUpdate="false" />
+
+				<p:dataTable value="#{moradorBean.lista}" var="moradores"
+					reflow="true" editMode="cell" emptyMessage="Não existem moradores cadastrados" editable="cell">
+					<p:column headerText="ID" >
+						<h:outputText value="#{moradores.id}" />
+					</p:column>
+					<p:column headerText="Apto">
+						<h:outputText value="#{moradores.unidade}" />
+					</p:column>
+					<p:column headerText="Nome Completo">
+						<h:outputText value="#{moradores.nomeCompleto}" />
+					</p:column>
+					<p:column headerText="E-Mail">
+						<h:outputText value="#{moradores.email}" />
+					</p:column>
+					<p:column headerText="Telefone">
+						<h:outputText value="#{moradores.telefone}" />
+					</p:column>
+					<p:column headerText="Celular">
+						<h:outputText value="#{moradores.celular}" />
+					</p:column>
+					<p:column headerText="Aniversário">
+						<h:outputText value="#{moradores.dataNascimento}" />
+					</p:column>
+					<p:column headerText="Observações">
+						<h:outputText value="#{moradores.obsMorador}" />
+					</p:column>
+				</p:dataTable>
+
+
+
+			</h:form>
+
+		</div>
+
+	</ui:define>
+
+</ui:composition>
