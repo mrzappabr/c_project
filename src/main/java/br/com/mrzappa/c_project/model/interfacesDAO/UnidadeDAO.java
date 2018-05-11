@@ -6,14 +6,14 @@ import br.com.mrzappa.c_project.model.Unidade;
 
 public interface UnidadeDAO {
 
-	public Unidade salvar(Unidade unidade);
+	public Unidade salvarUnidade(Unidade unidade);
 
-	public void atualizar(Unidade unidade);
+	public void atualizarUnidade(Unidade unidade);
 
-	public void excluir(Unidade unidade);
+	public void excluirUnidade(Unidade unidade);
 
-	public Unidade carregar(Long id);
+	public Unidade buscarUnidade(Long id);
 
-	public List<Unidade> listar();
+	public List<Unidade> listarUnidade();
 
 }

@@ -3,34 +3,39 @@ package br.com.mrzappa.c_project.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import br.com.mrzappa.c_project.model.enums.TipoPenalizacao;
 
 
 @Table(name = "infracao")
+@Entity
 public class HistoricoInfracao implements Serializable {
 
-
-	private static final long serialVersionUID = -3667861519825800753L;
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	private String unidade;
+	
+	@ManyToOne
+	private Unidade unidadeInfracao;
+	
 	private Date dataInfracao;
 	private Date dataNotificacao;
 	private TipoPenalizacao tipoPenalizacao;
 	private String DescricaoInfracao;
 
-	public String getUnidade() {
-		return unidade;
+	public Unidade getUnidade() {
+		return unidadeInfracao;
 	}
 
-	public void setUnidade(String unidade) {
-		this.unidade = unidade;
+	public void setUnidade(Unidade unidadeInfracao) {
+		this.unidadeInfracao = unidadeInfracao;
 	}
 
 	public Date getDataInfracao() {

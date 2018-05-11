@@ -1,17 +1,19 @@
 package br.com.mrzappa.c_project.util.converters;
 
+import javax.enterprise.context.RequestScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.ConverterException;
-import javax.faces.convert.FacesConverter;
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import br.com.mrzappa.c_project.model.Unidade;
 import br.com.mrzappa.c_project.model.service.UnidadeService;
 
-@FacesConverter(value = "unidadeConverter", managed = true)
-public class UnidadeConverter implements Converter<Unidade> {
+@Named
+@RequestScoped
+public class UnidadeConverterNamed implements Converter<Unidade> {
 
 	@Inject
 	private UnidadeService unidadeService;

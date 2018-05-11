@@ -12,20 +12,19 @@ import br.com.mrzappa.c_project.util.interceptor.Transactional;
 
 public class MoradorService implements Serializable {
 
-	private static final long serialVersionUID = -1553381408016349871L;
-
+	private static final long serialVersionUID = 1L;
 	@Inject
 	private MoradorDAO moradorDAO;
 
-	public Morador carregar(Integer id) {
+	public Morador carregar(Long id) {
 
-		return this.moradorDAO.carregar(id);
+		return this.moradorDAO.buscar(id);
 	}
 
 	@Transactional
 	public void salvar(Morador morador) {
 
-		Integer id = morador.getId();
+		Long id = morador.getId();
 		if (id == null || id == 0) {
 			this.moradorDAO.salvar(morador);
 		} else {
@@ -39,7 +38,7 @@ public class MoradorService implements Serializable {
 		this.moradorDAO.excluir(morador);
 	}
 
-	public List<Morador> buscaPorUnidade(Unidade unidade) {
+	public List<Morador> buscaPorApto(Unidade apto) {
 
 		return null;
 	}

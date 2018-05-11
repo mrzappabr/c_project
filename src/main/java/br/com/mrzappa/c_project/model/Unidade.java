@@ -4,40 +4,44 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 @Entity
 @Table(name = "unidade")
 public class Unidade implements Serializable {
 
-	private static final long serialVersionUID = 2012995096083075498L;
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	private String unidade;
-	@Transient
+	
+	@OneToMany (mappedBy = "apto", cascade = CascadeType.ALL)
 	private List<Morador> moradores = new ArrayList<>();
+	
 	private int qtdeMorador;
-	private Veiculo veiculo;
+	
+	@OneToMany (mappedBy = "unidade", cascade = CascadeType.ALL)
+	private List<Veiculo> veiculos;
+	
+	@OneToOne
 	private Morador responsavel;
-	private String bloco;
-	@Transient
+	
+	@ManyToOne
+	private Bloco bloco;
+	
+	@OneToMany (mappedBy = "unidadeInfracao", cascade = CascadeType.ALL)
 	private List<HistoricoInfracao> historicoInfracoes = new ArrayList<>();
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
 
 	public String getUnidade() {
 		return unidade;
@@ -63,12 +67,12 @@ public class Unidade implements Serializable {
 		this.qtdeMorador = qtdeMorador;
 	}
 
-	public Veiculo getVeiculo() {
-		return veiculo;
+	public List<Veiculo> getVeiculos() {
+		return veiculos;
 	}
 
-	public void setVeiculo(Veiculo veiculo) {
-		this.veiculo = veiculo;
+	public void setVeiculos(List<Veiculo> veiculos) {
+		this.veiculos = veiculos;
 	}
 
 	public Morador getResponsavel() {
@@ -79,11 +83,11 @@ public class Unidade implements Serializable {
 		this.responsavel = responsavel;
 	}
 
-	public String getBloco() {
+	public Bloco getBloco() {
 		return bloco;
 	}
 
-	public void setBloco(String bloco) {
+	public void setBloco(Bloco bloco) {
 		this.bloco = bloco;
 	}
 
@@ -93,6 +97,10 @@ public class Unidade implements Serializable {
 
 	public void setHistoricoInfracoes(List<HistoricoInfracao> historicoInfracoes) {
 		this.historicoInfracoes = historicoInfracoes;
+	}
+
+	public Long getId() {
+		return id;
 	}
 
 	@Override
@@ -119,5 +127,10 @@ public class Unidade implements Serializable {
 			return false;
 		return true;
 	}
+
+	/*@Override
+	public String toString() {
+		return String.format("%s[id=%d]", getClass().getSimpleName(), getId());
+	}*/
 
 }

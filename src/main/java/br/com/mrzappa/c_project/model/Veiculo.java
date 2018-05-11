@@ -5,8 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
 import br.com.mrzappa.c_project.model.enums.TipoVeiculo;
 
 @Entity
@@ -17,11 +17,14 @@ public class Veiculo implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id_veiculo;
+	private Long id_veiculo;
 	private String descricao;
 	private String cor;
 	private String placa;
-	private String unidade;
+	
+	@ManyToOne
+	private Unidade unidade;
+	
 	private TipoVeiculo tipoVeiculo;
 
 	public String getDescricao() {
@@ -48,11 +51,11 @@ public class Veiculo implements Serializable{
 		this.placa = placa;
 	}
 
-	public String getUnidade() {
+	public Unidade getUnidade() {
 		return unidade;
 	}
 
-	public void setUnidade(String unidade) {
+	public void setUnidade(Unidade unidade) {
 		this.unidade = unidade;
 	}
 
@@ -64,7 +67,7 @@ public class Veiculo implements Serializable{
 		this.tipoVeiculo = tipoVeiculo;
 	}
 
-	public Integer getId_veiculo() {
+	public Long getId_veiculo() {
 		return id_veiculo;
 	}
 

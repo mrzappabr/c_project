@@ -13,9 +13,9 @@ public interface MoradorDAO {
 
 	public void excluir(Morador morador);
 
-	public Morador carregar(Integer id);
+	public Morador buscar(Long id);
 
-	public List<Morador> buscarPorApto(Unidade unidade);
+	public List<Morador> buscarPorApto(Unidade apto);
 
 	public List<Morador> listar();
 

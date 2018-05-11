@@ -32,25 +32,25 @@ public class MoradorDAOHibernate implements MoradorDAO, Serializable {
 
 	@Override
 	public void atualizar(Morador morador) {
-		// TODO Auto-generated method stub
+		
 
 	}
 
 	@Override
 	public void excluir(Morador morador) {
-		// TODO Auto-generated method stub
+		
 
 	}
 
 	@Override
-	public Morador carregar(Integer id) {
-		// TODO Auto-generated method stub
+	public Morador buscar(Long id) {
+	
 		return null;
 	}
 
 	@Override
-	public List<Morador> buscarPorApto(Unidade unidade) {
-		// TODO Auto-generated method stub
+	public List<Morador> buscarPorApto(Unidade apto) {
+		
 		return null;
 	}
 

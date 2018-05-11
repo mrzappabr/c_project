@@ -3,6 +3,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_3.xsd"
 	version="2.3">
+	
 	 <application>
 		
 		<locale-config>
@@ -11,10 +12,9 @@
 		</locale-config>
 		<message-bundle>messages</message-bundle>
 	</application>
-	
 
-	<factory>
-		<exception-handler-factory>br.com.mrzappa.c_project.util.exception.JsfExceptionHandlerFactory</exception-handler-factory>
-	</factory>
+
+	<!-- <factory> <exception-handler-factory>br.com.mrzappa.c_project.util.exception.JsfExceptionHandlerFactory</exception-handler-factory> 
+		</factory> -->
 
 </faces-config>

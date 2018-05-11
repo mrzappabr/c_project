@@ -9,18 +9,15 @@
 		<f:metadata>
 			<f:event listener="#{moradorBean.listarUnidades}"
 				type="preRenderView" />
+				<f:event listener="#{moradorBean.listarBlocos}" type="preRenderView"></f:event>
 		</f:metadata>
 
 		<div class="ui-fluid">
 			<h1 class="aw-page-title">Cadastro Morador</h1>
 
-
 			<h:form id="form">
 
 				<p:messages autoUpdate="false" />
-
-				<h:inputHidden value="#{moradorBean.morador.id}" />
-				<h:inputHidden value="#{moradorBean.morador.email}" />
 
 				<p:panelGrid id="panel" columns="4" layout="grid"
 					style="margin-bottom: 15px" styleClass="panelgrid-noborder"
@@ -30,17 +27,24 @@
 					<p:inputText id="nomeCompleto" label="NomeCompleto"
 						value="#{moradorBean.morador.nomeCompleto}" />
 
-					<p:outputLabel value="Apartamento: " for="unidade" />
-					<p:selectOneMenu id="unidade">
-						<f:selectItem itemLabel="Selecione a unidade" />
-						<f:selectItems value="#{moradorBean.listaUnidades}" var="unidade"
-							itemValue="#{unidade}" itemLabel="#{unidade.unidade}" />
-					</p:selectOneMenu>
-
 					<p:outputLabel value="E-mail: " for="email" />
 					<p:inputText id="email" label="Email"
 						value="#{moradorBean.morador.email}" required="true"
 						requiredMessage="Por favor, informe seu email" />
+
+					<p:outputLabel value="Bloco: " for="bloco" />
+					<p:selectOneMenu id="bloco" value="#{moradorBean.blocoSelecionado}" converter="blocoConverter" >
+						<f:selectItem itemLabel="Selecione o bloco" />
+						<f:selectItems value="#{moradorBean.listaBlocos}" var="bloco"
+							itemValue="#{bloco}" itemLabel="#{bloco.bloco}" />
+					</p:selectOneMenu>
+					
+					<p:outputLabel value="Apartamento: " for="apto" />
+					<p:selectOneMenu id="apto" value="#{moradorBean.unidadeSelecionada}" converter="unidadeConverter">
+						<f:selectItem itemLabel="Selecione a unidade" />
+						<f:selectItems value="#{moradorBean.listaUnidades}" var="unidade"
+							itemValue="#{unidade}" itemLabel="#{unidade.unidade}" />
+					</p:selectOneMenu>
 
 					<p:outputLabel value="Telefone: " for="telefone" />
 					<p:inputText id="telefone" label="Telefone"
@@ -64,7 +68,7 @@
 				<p:toolbar>
 					<p:toolbarGroup>
 						<p:commandButton value="Salvar" action="#{moradorBean.salvar}"
-							update="@form" process="@this panel" />
+							update="@form" process="@this panel"/>
 
 					</p:toolbarGroup>
 				</p:toolbar>

@@ -7,18 +7,18 @@ import javax.faces.convert.ConverterException;
 import javax.faces.convert.FacesConverter;
 import javax.inject.Inject;
 
-import br.com.mrzappa.c_project.model.Unidade;
+import br.com.mrzappa.c_project.model.Bloco;
 import br.com.mrzappa.c_project.model.service.UnidadeService;
 
-@FacesConverter(value = "unidadeConverter", managed = true)
-public class UnidadeConverter implements Converter<Unidade> {
-
+ 
+@FacesConverter(value = "blocoConverter", managed = true)
+public class BlocoConverter implements Converter<Bloco>{
+	
 	@Inject
 	private UnidadeService unidadeService;
 
 	@Override
-	public Unidade getAsObject(FacesContext context, UIComponent component, String value) {
-
+	public Bloco getAsObject(FacesContext context, UIComponent component, String value) {
 		if (value == null || value.isEmpty()) {
 
 			return null;
@@ -29,22 +29,21 @@ public class UnidadeConverter implements Converter<Unidade> {
 		}
 
 		Long id = Long.parseLong(value);
-		return unidadeService.buscarUnidade(id);
-
+		return unidadeService.buscarBloco(id);
 	}
 
 	@Override
-	public String getAsString(FacesContext context, UIComponent component, Unidade value) {
-
+	public String getAsString(FacesContext context, UIComponent component, Bloco value) {
 		if (value == null) {
 			return null; // Ou uma string vazia.
 		}
-		if (!(value instanceof Unidade)) {
+		if (!(value instanceof Bloco)) {
 			throw new ConverterException("O valor não é um tipo Uninade : " + value);
 		}
 
-		Long id = ((Unidade) value).getId();
+		Long id = ((Bloco) value).getId();
 		return (id != null) ? String.valueOf(id) : null;
+	
 	}
 
 }

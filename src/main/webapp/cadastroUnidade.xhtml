@@ -6,6 +6,10 @@
 	template="WEB-INF/templates/Layout.xhtml">
 
 	<ui:define name="content">
+
+		<f:metadata>
+			<f:event listener="#{unidadeBean.listarBlocos}" type="preRenderView"></f:event>
+		</f:metadata>
 		<div class="ui-fluid">
 			<h1 class="aw-page-title">Cadastro Unidade</h1>
 
@@ -17,15 +21,27 @@
 					style="margin-bottom: 15px" styleClass="panelgrid-noborder"
 					columnClasses="ui-grid-col-6, ui-grid-col-6">
 
+
 					<p:outputLabel value="Unidade: " for="unidade" />
 					<p:inputText id="unidade" label="Unidade"
 						value="#{unidadeBean.unidade.unidade}" />
+						
+						
 
 					<p:outputLabel value="Bloco: " for="bloco" />
-					<p:inputText id="bloco" label="Bloco"
-						value="#{unidadeBean.unidade.bloco}" />
-						
-						<p:outputLabel value="Numero de Moradores: " for="moradores" />
+					<p:selectOneMenu id="bloco" value="#{unidadeBean.unidade.bloco}" converter="blocoConverter">
+
+						<f:selectItem itemLabel="Selecione o seu bloco" />
+
+						<f:selectItems value="#{unidadeBean.listaBlocos}" var="bloco" itemValue="#{bloco}" itemLabel="#{bloco.bloco}"/>
+
+					</p:selectOneMenu>
+					
+					
+
+
+
+					<p:outputLabel value="Numero de Moradores: " for="moradores" />
 					<p:inputText id="moradores" label="NumeroMoradores"
 						value="#{unidadeBean.unidade.qtdeMorador}" />
 

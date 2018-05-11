@@ -11,13 +11,11 @@ import br.com.mrzappa.c_project.model.interfacesDAO.UnidadeDAO;
 
 public class UnidadeDAOHibernate implements UnidadeDAO, Serializable {
 
-	private static final long serialVersionUID = -1236868126423331221L;
-	
+	private static final long serialVersionUID = 1L;
 	@Inject
 	private EntityManager em;
 
-	
-	public Unidade salvar(Unidade unidade) {
+	public Unidade salvarUnidade(Unidade unidade) {
 
 		unidade = em.merge(unidade);
 
@@ -25,29 +23,28 @@ public class UnidadeDAOHibernate implements UnidadeDAO, Serializable {
 	}
 
 	@Override
-	public void atualizar(Unidade unidade) {
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public void excluir(Unidade unidade) {
-		// TODO Auto-generated method stub
+	public void atualizarUnidade(Unidade unidade) {
 
 	}
 
 	@Override
-	public Unidade carregar(Long id) {
-		// TO DO fazer funcionar para o conversor
+	public void excluirUnidade(Unidade unidade) {
 
-		
-		return null;
 	}
 
 	@Override
-	public List<Unidade> listar() {
+	public Unidade buscarUnidade(Long id) {
+
+		return em.find(Unidade.class, id);
+
+	}
+
+	@Override
+	public List<Unidade> listarUnidade() {
 
 		return em.createQuery("from Unidade", Unidade.class).getResultList();
 
 	}
 
+	
 }
