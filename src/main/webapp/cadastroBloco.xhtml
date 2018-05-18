@@ -1,0 +1,44 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="WEB-INF/templates/Layout.xhtml">
+
+	<ui:define name="content">
+
+		
+		<div class="ui-fluid">
+			<h1 class="aw-page-title">Cadastro Bloco</h1>
+
+			<h:form id="form">
+
+				<p:messages autoUpdate="false" />
+
+				<p:panelGrid id="panel" columns="2" layout="grid"
+					style="margin-bottom: 15px" styleClass="panelgrid-noborder"
+					columnClasses="ui-grid-col-6, ui-grid-col-6">
+
+
+					<p:outputLabel value="Bloco: " for="bloco" />
+					<p:inputText id="bloco" label="Bloco"
+						value="#{unidadeBean.bloco.bloco}" />
+
+					
+
+				</p:panelGrid>
+
+				<p:toolbar>
+					<p:toolbarGroup>
+						<p:commandButton value="Salvar" action="#{unidadeBean.salvarBloco}"
+							update="@form" process="@this panel" />
+					</p:toolbarGroup>
+				</p:toolbar>
+
+			</h:form>
+
+		</div>
+
+	</ui:define>
+
+</ui:composition>

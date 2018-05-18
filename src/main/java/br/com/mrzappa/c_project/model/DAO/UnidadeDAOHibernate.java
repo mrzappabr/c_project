@@ -1,6 +1,5 @@
 package br.com.mrzappa.c_project.model.DAO;
 
-import java.io.Serializable;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -9,12 +8,13 @@ import javax.persistence.EntityManager;
 import br.com.mrzappa.c_project.model.Unidade;
 import br.com.mrzappa.c_project.model.interfacesDAO.UnidadeDAO;
 
-public class UnidadeDAOHibernate implements UnidadeDAO, Serializable {
+public class UnidadeDAOHibernate implements UnidadeDAO{
 
-	private static final long serialVersionUID = 1L;
+	
 	@Inject
 	private EntityManager em;
 
+	@Override
 	public Unidade salvarUnidade(Unidade unidade) {
 
 		unidade = em.merge(unidade);

@@ -14,6 +14,7 @@ import br.com.mrzappa.c_project.util.interceptor.Transactional;
 public class UnidadeService implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+
 	@Inject
 	private UnidadeDAO unidadeDAO;
 
@@ -24,20 +25,24 @@ public class UnidadeService implements Serializable {
 
 		return this.unidadeDAO.buscarUnidade(id);
 	}
-	
+
 	public Bloco buscarBloco(Long id) {
-		
+
 		return this.blocoDAO.buscarBloco(id);
 	}
-	
-	
+
+	@Transactional
+	public Bloco salvarBloco(Bloco bloco) {
+
+		return blocoDAO.salvarBloco(bloco);
+
+	}
 
 	@Transactional
 	public Unidade salvarUnidade(Unidade unidade) {
 
-		unidadeDAO.salvarUnidade(unidade);
+		return unidadeDAO.salvarUnidade(unidade);
 
-		return unidade;
 	}
 
 	public List<Unidade> listarUnidade() {

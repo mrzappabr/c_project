@@ -19,41 +19,91 @@ public class UnidadeBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	@Inject
 	private Unidade unidade;
 
-	private List<Unidade> listaUnidades;
-
+	@Inject
+	private Bloco bloco;
+	
 	@Inject
 	private UnidadeService unidadeService;
+
+	private List<Unidade> listaUnidades;
 
 	private List<Bloco> listaBlocos;
 
 	private Bloco blocoSelecionado;
 
-	// Construtor reinicializando valores do formulario
-	public UnidadeBean() {
-		limpaFormulario();
+	private boolean mostrarLabelSeOBlocoForCodigo1 = false;
+	
+	
+	public void imprimeBloco() {
+		
+		System.out.println("xxxxxxxxxxxxxxxxxxxxx TESTE IMPRESSÃO BLOCO xxxxxxxxxxxxxxxxxxxxxx");
+		
+		System.out.println("Nome do Bloco: " + bloco.getBloco() + " ID: " + bloco.getId());
+		
+		System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+		
+		
+	}
+	
+
+	public boolean isMostrarLabelSeOBlocoForCodigo1() {
+
+		this.mostrarLabelSeOBlocoForCodigo1 = false;
+
+		if (this.getBloco().getId().equals(1L)) {
+			
+			
+			this.mostrarLabelSeOBlocoForCodigo1 = true;
+
+		}
+
+		return mostrarLabelSeOBlocoForCodigo1;
 	}
 
-	// Metodo reinicialiaza objetos e valores
-	private void limpaFormulario() {
+	public void limparFormulario() {
+
 		unidade = new Unidade();
 
 	}
 
-	public Unidade salvar() {
+	public void novaUnidade() {
+
+		unidade = new Unidade();
+	}
+
+	public void setBloco(Bloco bloco) {
+		this.bloco = bloco;
+	}
+
+	public void adicionarUnd() {
+
+		bloco.getUnidades().add(unidade);
+		unidade.setBloco(bloco);
+
+	}
+
+	public Unidade salvarUnidade() {
 
 		unidadeService.salvarUnidade(unidade);
 		MessagesFaces.addInfoMessage("Unidade salva com sucesso");
-		limpaFormulario();
+		limparFormulario();
+
+		return null;
+	}
+
+	public Bloco salvarBloco() {
+
+		unidadeService.salvarBloco(bloco);
+
+		MessagesFaces.addInfoMessage("Bloco salvo com sucesso, acrescente unidades");
 
 		return null;
 	}
 
 	public void listarBlocos() {
 
-		System.out.println("listando blocos....");
 		if (FacesUtil.isNotPostback()) {
 			this.listaBlocos = unidadeService.listarBloco();
 		}
@@ -61,8 +111,6 @@ public class UnidadeBean implements Serializable {
 	}
 
 	public List<Unidade> getListaUnidades() {
-
-		System.out.println("Lista unidades...");
 
 		this.listaUnidades = unidadeService.listarUnidade();
 		return this.listaUnidades;
@@ -72,16 +120,12 @@ public class UnidadeBean implements Serializable {
 		return unidade;
 	}
 
-	public void setUnidade(Unidade unidade) {
-		this.unidade = unidade;
+	public void setListaBlocos(List<Bloco> listaBlocos) {
+		this.listaBlocos = listaBlocos;
 	}
 
 	public List<Bloco> getListaBlocos() {
 		return listaBlocos;
-	}
-
-	public void setListaBlocos(List<Bloco> listaBlocos) {
-		this.listaBlocos = listaBlocos;
 	}
 
 	public Bloco getBlocoSelecionado() {
@@ -91,5 +135,10 @@ public class UnidadeBean implements Serializable {
 	public void setBlocoSelecionado(Bloco blocoSelecionado) {
 		this.blocoSelecionado = blocoSelecionado;
 	}
+
+	public Bloco getBloco() {
+		return bloco;
+	}
+	
 
 }

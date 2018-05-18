@@ -1,18 +1,22 @@
 package br.com.mrzappa.c_project.model;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.NaturalId;
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
@@ -26,12 +30,14 @@ public class Morador implements Serializable {
 	private Long id;
     
 	@ManyToOne
+	@JoinColumn(name="apto_id")
 	private Unidade apto;
 
 	@NotBlank
 	@Column(name = "nome_completo", length = 150, nullable = false)
 	private String nomeCompleto;
 
+	@Email
 	@NotBlank
 	@NaturalId
 	@Column(length = 100, nullable = false, unique = true)
@@ -47,8 +53,9 @@ public class Morador implements Serializable {
 	@Column(length = 15, nullable = true)
 	private String celular;
 
+	@Temporal(TemporalType.DATE)
 	@Column(name = "dt_nascimento", nullable = true)
-	private LocalDate dataNascimento;
+	private Date dataNascimento;
 
 	@Lob
 	@Column(name = "obs_morador", nullable = true)
@@ -114,11 +121,11 @@ public class Morador implements Serializable {
 		this.celular = celular;
 	}
 
-	public LocalDate getDataNascimento() {
+	public Date getDataNascimento() {
 		return dataNascimento;
 	}
 
-	public void setDataNascimento(LocalDate dataNascimento) {
+	public void setDataNascimento(Date dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
 

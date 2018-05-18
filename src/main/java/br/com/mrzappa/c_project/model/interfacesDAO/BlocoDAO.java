@@ -6,11 +6,11 @@ import br.com.mrzappa.c_project.model.Bloco;
 
 public interface BlocoDAO {
 
-	public Bloco salvarBloco(Bloco unidade);
+	public Bloco salvarBloco(Bloco bloco);
 
-	public void atualizarBloco(Bloco unidade);
+	public void atualizarBloco(Bloco bloco);
 
-	public void excluirBloco(Bloco unidade);
+	public void excluirBloco(Bloco bloco);
 
 	public Bloco buscarBloco(Long id);
 

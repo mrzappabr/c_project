@@ -1,10 +1,15 @@
 package br.com.mrzappa.c_project.model;
 
 import java.io.Serializable;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import br.com.mrzappa.c_project.model.enums.TipoVeiculo;
@@ -18,13 +23,19 @@ public class Veiculo implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id_veiculo;
+	
 	private String descricao;
+	
 	private String cor;
+	
 	private String placa;
 	
 	@ManyToOne
+	@JoinColumn(name="unidade_id")
 	private Unidade unidade;
 	
+	@Enumerated(EnumType.STRING)
+	@Column(name="tipo_veiculo")
 	private TipoVeiculo tipoVeiculo;
 
 	public String getDescricao() {

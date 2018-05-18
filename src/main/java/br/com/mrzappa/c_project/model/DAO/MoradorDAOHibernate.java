@@ -1,6 +1,5 @@
 package br.com.mrzappa.c_project.model.DAO;
 
-import java.io.Serializable;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -10,9 +9,8 @@ import br.com.mrzappa.c_project.model.Morador;
 import br.com.mrzappa.c_project.model.Unidade;
 import br.com.mrzappa.c_project.model.interfacesDAO.MoradorDAO;
 
-public class MoradorDAOHibernate implements MoradorDAO, Serializable {
+public class MoradorDAOHibernate implements MoradorDAO{
 
-	private static final long serialVersionUID = 1L;
 	@Inject
 	private EntityManager em;
 
@@ -27,7 +25,7 @@ public class MoradorDAOHibernate implements MoradorDAO, Serializable {
 
 		morador = em.merge(morador);
 
-		return null;
+		return morador;
 	}
 
 	@Override

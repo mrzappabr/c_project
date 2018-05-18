@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -25,23 +26,32 @@ public class Unidade implements Serializable {
 	private Long id;
 
 	private String unidade;
-	
-	@OneToMany (mappedBy = "apto", cascade = CascadeType.ALL)
+
+	@OneToMany
 	private List<Morador> moradores = new ArrayList<>();
-	
+
 	private int qtdeMorador;
-	
-	@OneToMany (mappedBy = "unidade", cascade = CascadeType.ALL)
+
+	@OneToMany(mappedBy = "unidade", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Veiculo> veiculos;
-	
+
 	@OneToOne
 	private Morador responsavel;
-	
+
 	@ManyToOne
 	private Bloco bloco;
-	
-	@OneToMany (mappedBy = "unidadeInfracao", cascade = CascadeType.ALL)
+
+	@OneToMany(mappedBy = "unidadeInfracao", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<HistoricoInfracao> historicoInfracoes = new ArrayList<>();
+
+	public Unidade() {
+
+	}
+
+	public Unidade(String unidade, Bloco bloco) {
+		this.unidade = unidade;
+		this.bloco = bloco;
+	}
 
 	public String getUnidade() {
 		return unidade;
@@ -128,9 +138,10 @@ public class Unidade implements Serializable {
 		return true;
 	}
 
-	/*@Override
-	public String toString() {
-		return String.format("%s[id=%d]", getClass().getSimpleName(), getId());
-	}*/
+	
+	  @Override
+	  public String toString() { return String.format("%s[id=%d]",
+	  getClass().getSimpleName(), getId()); }
+	 
 
 }

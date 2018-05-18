@@ -1,0 +1,77 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="WEB-INF/templates/Layout.xhtml">
+
+	<ui:define name="content">
+
+		<div class="ui-fluid">
+
+			<h1 class="aw-page-title">Pesquisa de Unidades</h1>
+
+			<p:panelGrid id="grid1" columns="2" layout="grid"
+				style="margin-top: 20px; margin-bottom: 20px"
+				styleClass="panelgrid-noborder"
+				columnClasses="ui-grid-col-6, ui-grid-col-6">
+
+				<p:selectOneMenu id="bloco" value="#{unidadeBean.bloco}">
+					<f:converter binding="#{blocoConverterNamed}" />
+					<f:selectItem itemLabel="Selecione o bloco para pesquisa" />
+					<f:selectItems value="#{unidadeBean.listaBlocos}" var="bloco"
+						itemValue="#{bloco}" itemLabel="#{bloco.bloco}" />
+				</p:selectOneMenu>
+
+			</p:panelGrid>
+
+			<p:toolbar
+				style="margin-top: 15px; margin-bottom: 15px; padding: 10px">
+
+				<p:toolbarGroup>
+					<p:commandButton value="Pesquisar Unidade" />
+				</p:toolbarGroup>
+
+				<p:toolbarGroup align="right">
+					<p:commandButton value="Nova Unidade" />
+				</p:toolbarGroup>
+
+			</p:toolbar>
+
+	
+			<p:dataTable id="tableUnidades" reflow="true" paginator="true"
+				paginatorAlwaysVisible="false" rows="10" paginatorPosition="bottom"
+				emptyMessage="Nenhum resultado para sua pesquisa">
+
+				<p:column headerText="ID">
+					<h:outputText value="123" />
+				</p:column>
+
+				<p:column headerText="Unidade">
+					<h:outputText value="123" />
+				</p:column>
+
+				<p:column headerText="Qtde. Moradores">
+					<h:outputText value="123" />
+				</p:column>
+
+				<p:column headerText="Responsavel">
+					<h:outputText value="123" />
+				</p:column>
+
+				<p:column headerText="Bloco">
+					<h:outputText value="123" />
+				</p:column>
+
+				<p:column style="text-align: center">
+					<p:button icon="ui-icon-pencil" title="Editar nidade" />
+					<p:commandButton icon="ui.icon.trash" title="Excluir unidade" />
+				</p:column>
+
+			</p:dataTable>
+
+		</div>
+
+	</ui:define>
+
+</ui:composition>

@@ -1,6 +1,5 @@
 package br.com.mrzappa.c_project.model.DAO;
 
-import java.io.Serializable;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -9,28 +8,26 @@ import javax.persistence.EntityManager;
 import br.com.mrzappa.c_project.model.Bloco;
 import br.com.mrzappa.c_project.model.interfacesDAO.BlocoDAO;
 
-public class BlocoDAOHibernate implements BlocoDAO, Serializable {
+public class BlocoDAOHibernate implements BlocoDAO {
 
-	private static final long serialVersionUID = 1L;
-	
 	@Inject
 	private EntityManager em;
 
 	@Override
-	public Bloco salvarBloco(Bloco unidade) {
-		
-		return null;
+	public Bloco salvarBloco(Bloco bloco) {
+
+		bloco = em.merge(bloco);
+
+		return bloco;
 	}
 
 	@Override
-	public void atualizarBloco(Bloco unidade) {
-		// TODO Auto-generated method stub
+	public void atualizarBloco(Bloco bloco) {
 
 	}
 
 	@Override
-	public void excluirBloco(Bloco unidade) {
-		// TODO Auto-generated method stub
+	public void excluirBloco(Bloco bloco) {
 
 	}
 
@@ -41,7 +38,7 @@ public class BlocoDAOHibernate implements BlocoDAO, Serializable {
 
 	@Override
 	public List<Bloco> listarBloco() {
-		
+
 		return em.createQuery("from Bloco", Bloco.class).getResultList();
 	}
 

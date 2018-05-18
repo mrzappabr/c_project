@@ -7,14 +7,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import br.com.mrzappa.c_project.model.enums.TipoPenalizacao;
 
 
-@Table(name = "infracao")
+
 @Entity
+@Table(name = "infracao")
 public class HistoricoInfracao implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -23,6 +25,7 @@ public class HistoricoInfracao implements Serializable {
 	private long id;
 	
 	@ManyToOne
+	@JoinColumn(name="unidade_id")
 	private Unidade unidadeInfracao;
 	
 	private Date dataInfracao;
